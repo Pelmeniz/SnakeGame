@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SnakeGame",
+			"Path": "C:\\Github\\SnakeGame\\Source\\SnakeGame.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SnakeGameEditor",
+			"Path": "C:\\Github\\SnakeGame\\Source\\SnakeGameEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

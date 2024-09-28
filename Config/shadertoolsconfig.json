@@ -1,0 +1,13 @@
+{
+  "hlsl.preprocessorDefinitions": {
+    
+  },
+  "hlsl.additionalIncludeDirectories": [
+    "C:\\Github\SnakeGame",
+    ".",
+    "..\\RelativeDirectory"
+  ],
+  "hlsl.virtualDirectoryMappings": {
+    "/Project": "C:\\Github\\Shaders"
+  }
+}
