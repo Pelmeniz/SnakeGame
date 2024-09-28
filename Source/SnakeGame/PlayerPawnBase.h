@@ -27,10 +27,6 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
 
-	//UFUNCTION(BlueprintNativeEvent)
-	//void SetFirstElemType();
-	//void SetFirstElemType_Implementation();
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

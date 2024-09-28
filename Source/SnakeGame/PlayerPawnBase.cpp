@@ -4,6 +4,7 @@
 #include "PlayerPawnBase.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "SnakeBase.h"
+#include "Components/InputComponent.h"
 
 // Sets default values
 APlayerPawnBase::APlayerPawnBase()
@@ -55,7 +56,7 @@ void APlayerPawnBase::HandlerPlayerVerticalInput(float value)
 		{
 			SnakeActor->LastMoveDirection = EMovementDirection::UP;
 		}
-		if (value > 0 && SnakeActor->LastMoveDirection != EMovementDirection::UP)
+		else if (value < 0 && SnakeActor->LastMoveDirection != EMovementDirection::UP)
 		{
 			SnakeActor->LastMoveDirection = EMovementDirection::DOWN;
 		}
@@ -66,13 +67,13 @@ void APlayerPawnBase::HandlerPlayerHorizontalInput(float value)
 {
 	if (IsValid(SnakeActor))
 	{
-		if (value > 0 && SnakeActor->LastMoveDirection != EMovementDirection::LEFT)
-		{
-			SnakeActor->LastMoveDirection = EMovementDirection::RIGHT;
-		}
 		if (value > 0 && SnakeActor->LastMoveDirection != EMovementDirection::RIGHT)
 		{
 			SnakeActor->LastMoveDirection = EMovementDirection::LEFT;
+		}
+		else if (value < 0 && SnakeActor->LastMoveDirection != EMovementDirection::LEFT)
+		{
+			SnakeActor->LastMoveDirection = EMovementDirection::RIGHT;
 		}
 	}
 }
