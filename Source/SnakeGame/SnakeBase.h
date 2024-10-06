@@ -11,12 +11,10 @@ class ASnakeElementBase;
 UENUM()
 enum class EMovementDirection 
 {
-
 	UP,
 	DOWN,
 	LEFT,
 	RIGHT
-
 };
 
 UCLASS()
@@ -40,9 +38,18 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	float MovementSpeed;
 
-
 	UPROPERTY()
 	EMovementDirection LastMoveDirection;
+
+	//For any Bounus speed
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "How long is any bonus valid")
+	float StepDelay;
+	UPROPERTY()
+	float BufferTime;
+
+	//For method SetLastElementSnale in SnakeElementBase
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "LastElement")
+	UStaticMesh* ChangesMesh;
 
 protected:
 	// Called when the game starts or when spawned
@@ -52,8 +59,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintCallable)
 	void AddSnakeElement(int EmementsNum = 1);
-
+	UFUNCTION(BlueprintCallable)
 	void Move();
+	UFUNCTION()
+	void SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other);
 
 };

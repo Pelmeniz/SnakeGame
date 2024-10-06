@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\SnakeGame.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{01E8F4D8-9A20-4ACF-B5BA-3A622E1B4759}</UniqueIdentifier>
+      <UniqueIdentifier>{492E81BF-E85B-4B5B-B3C3-FF0DD6D4C59B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\SnakeGame.Target.cs">
       <Filter>Source</Filter>
@@ -11,8 +11,10 @@
     <None Include="..\..\Source\SnakeGameEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{12EEFCA0-F87B-4840-916D-326BCE1D34F3}</UniqueIdentifier>
+      <UniqueIdentifier>{C865B5A8-7524-46DF-8E56-AA214DC2C229}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -23,12 +25,27 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
     <None Include="..\..\Config\shadertoolsconfig.json">
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\SnakeGame">
-      <UniqueIdentifier>{4A7C6FF3-52B5-4EDF-AFBD-0188B89FFCB2}</UniqueIdentifier>
+      <UniqueIdentifier>{85E1F88E-4F5E-44C6-9039-E3D9B16AA91C}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\SnakeGame\Food.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SnakeGame\Food.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SnakeGame\Interactable.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SnakeGame\Interactable.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\SnakeGame\PlayerPawnBase.cpp">
       <Filter>Source\SnakeGame</Filter>
     </ClCompile>
@@ -60,6 +77,40 @@
       <Filter>Source\SnakeGame</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\SnakeGame\SnakeGameGameModeBase.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BonusBase.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClCompile Include="DeathWall.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClCompile Include="FastBonus.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+    <ClCompile Include="SlowBonus.cpp">
+      <Filter>Source\SnakeGame</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BonusBase.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+    <ClInclude Include="DeathWall.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+    <ClInclude Include="FastBonus.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>Source\SnakeGame</Filter>
+    </ClInclude>
+    <ClInclude Include="SlowBonus.h">
       <Filter>Source\SnakeGame</Filter>
     </ClInclude>
   </ItemGroup>

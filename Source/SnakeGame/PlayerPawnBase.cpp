@@ -5,6 +5,7 @@
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "SnakeBase.h"
 #include "Components/InputComponent.h"
+#include "Food.h"
 
 // Sets default values
 APlayerPawnBase::APlayerPawnBase()
@@ -30,6 +31,20 @@ void APlayerPawnBase::BeginPlay()
 void APlayerPawnBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	BufferTimeForEat += DeltaTime;
+	BufferTimeForBonus += DeltaTime;
+
+	if (BufferTimeForEat >= HowOftenSpawnEat)
+	{
+		RandomSpawnEat();
+		BufferTimeForEat = 0;
+	}
+
+	if (BufferTimeForBonus >= HowOftenSpawnBonus)
+	{
+		RandomSpawnBonus();
+		BufferTimeForBonus = 0;
+	}
 
 }
 
@@ -75,6 +90,56 @@ void APlayerPawnBase::HandlerPlayerHorizontalInput(float value)
 		{
 			SnakeActor->LastMoveDirection = EMovementDirection::RIGHT;
 		}
+	}
+}
+
+void APlayerPawnBase::RandomSpawnEat()
+{
+	float SpawnY = FMath::FRandRange(MinY, MaxY);
+	float SpawnX = FMath::FRandRange(MinX, MaxX);
+	FRotator StartPointRotation = FRotator(0, 0, 0);
+
+	FVector SpawnPoint = FVector(SpawnX, SpawnY, SpawnZ);
+	if (IsValid(SnakeActor))
+	{
+		if (GetWorld())
+		{
+			FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(SpawnPoint));
+		}
+	}
+}
+
+void APlayerPawnBase::RandomSpawnBonus()
+{
+
+
+	float SpawnY = FMath::FRandRange(MinY, MaxY);
+	float SpawnX = FMath::FRandRange(MinX, MaxX);
+	FRotator StartPointRotation = FRotator(0, 0, 0);
+	int16 WhySpawn = FMath::RandRange(0, 1);
+	FVector SpawnPoint = FVector(SpawnX, SpawnY, SpawnZ);
+
+	switch (WhySpawn)
+	{
+	case 0:
+		if (IsValid(SnakeActor))
+		{
+			if (GetWorld())
+			{
+				GetWorld()->SpawnActor<AActor>(FirstActorClass, FTransform(SpawnPoint));
+			}
+		}
+		break;
+	case 1:
+		if (IsValid(SnakeActor))
+		{
+			if (GetWorld())
+			{
+				GetWorld()->SpawnActor<AActor>(SecondActorClass, FTransform(SpawnPoint));
+			}
+		}
+		break;
+
 	}
 }
 
