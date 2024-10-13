@@ -3,7 +3,9 @@
 
 #include "SnakeElementBase.h"
 #include "Engine/Classes/Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "SnakeBase.h"
+#include "SnakeGameGameModeBase.h"
 
 // Sets default values
 ASnakeElementBase::ASnakeElementBase()
@@ -40,7 +42,10 @@ void ASnakeElementBase::Interact(AActor* Interactor, bool bIsHead)
 	auto Snake = Cast<ASnakeBase>(Interactor);
 	if (IsValid(Snake))
 	{
-		Snake->Destroy();
+		//Snake->Destroy();
+		ASnakeGameGameModeBase* CurrentGameMode = Cast<ASnakeGameGameModeBase>(
+			UGameplayStatics::GetGameMode(GetWorld()));
+		CurrentGameMode->SetCurrentState(ESnakeGamePlayState::EGameOver);
 	}
 }
 
@@ -69,17 +74,6 @@ void ASnakeElementBase::ToggleCollision()
 	}
 	
 }
-
-void ASnakeElementBase::SetLastElementSnake(TArray<ASnakeElementBase*> SnakeElements, UStaticMesh* NewMesh)
-{
-	if (SnakeElements.Num() >= 2)
-	{
-		ASnakeElementBase* PrevElement = SnakeElements[(SnakeElements.Num() - 2)];
-		PrevElement->MeshComponent->SetStaticMesh(Mesh);
-	}
-	ASnakeElementBase* LastElement = SnakeElements[(SnakeElements.Num() - 1)];
-	LastElement->MeshComponent->SetStaticMesh(NewMesh);
-};
 
 
 

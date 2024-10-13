@@ -22,9 +22,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	UStaticMeshComponent* MeshComponent;
 
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "WhatIsTheLastElement")
-	UStaticMesh* Mesh;
-
 	UPROPERTY()
 	ASnakeBase* SnakeOwner;
 protected:
@@ -52,6 +49,5 @@ public:
 	UFUNCTION()
 	void ToggleCollision();
 
-	UFUNCTION(BlueprintCallable)
-	void SetLastElementSnake(TArray<ASnakeElementBase*> SnakeElements, UStaticMesh* NewMesh);
+	
 };

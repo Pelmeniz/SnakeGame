@@ -4,6 +4,9 @@
 #include "SnakeBase.h"
 #include "SnakeElementBase.h"
 #include "Interactable.h"
+#include "SnakeGameGameModeBase.h"
+#include "Engine/SceneCapture2D.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ASnakeBase::ASnakeBase()
@@ -12,7 +15,7 @@ ASnakeBase::ASnakeBase()
 	PrimaryActorTick.bCanEverTick = true;
 	ElementSize = 150.f;
 	MovementSpeed = 1.f;
-	LastMoveDirection = EMovementDirection::DOWN;
+	LastMovementDirection = EMovementDirection::DOWN;
 
 }
 
@@ -30,15 +33,8 @@ void ASnakeBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	Move();
-
-	BufferTime += DeltaTime;
-	if (BufferTime >= StepDelay)
-	{
-		SetActorTickInterval(MovementSpeed);
-		BufferTime = 0;
-	}
-
 }
+
 
 void ASnakeBase::AddSnakeElement(int ElementsNum)
 {
@@ -49,19 +45,19 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
 		NewSnakeElem->SnakeOwner = this;
 		int32 ElemIndex = SnakeElements.Add(NewSnakeElem);
+		
 		if (ElemIndex == 0)
 		{
-			NewSnakeElem->SetFirstElementType();	
+			NewSnakeElem->SetFirstElementType();
 		}
-		NewSnakeElem->SetLastElementSnake(SnakeElements, ChangesMesh);
 	}
 }
 
 void ASnakeBase::Move() 
 {
-	FVector MovementVector(FVector::ZeroVector);
+	FVector MovementVector(ForceInitToZero);
 
-	switch (LastMoveDirection)
+	switch (LastMovementDirection)
 	{
 	case EMovementDirection::UP:
 		MovementVector.X += ElementSize;
@@ -79,6 +75,7 @@ void ASnakeBase::Move()
 
 	//AddActorWorldOffset(MovementVector);
 	SnakeElements[0]->ToggleCollision();
+	SnakeElements[0]->SetHidden(false);
 
 	for (int i = SnakeElements.Num() - 1; i > 0; i--)
 	{
@@ -90,6 +87,7 @@ void ASnakeBase::Move()
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
 	SnakeElements[0]->ToggleCollision();
+	
 }
 
 void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other)
@@ -104,6 +102,17 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 		{
 			InteractableInterface->Interact(this, bIsFirst);
 		}
+		else
+		{
+			ASnakeGameGameModeBase* CurrentGameModeBase = Cast<ASnakeGameGameModeBase>(
+				UGameplayStatics::GetGameMode(GetWorld()));
+			CurrentGameModeBase->SetCurrentState(ESnakeGamePlayState::EGameOver);
+		}
 	}
 }
+int32 ASnakeBase::GetElementsCount() const
+{
+	return SnakeElements.Num();
+}
+
 

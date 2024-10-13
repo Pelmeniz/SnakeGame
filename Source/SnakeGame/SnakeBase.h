@@ -7,6 +7,7 @@
 #include "SnakeBase.generated.h"
 
 class ASnakeElementBase;
+class ASceneCapture2d;
 
 UENUM()
 enum class EMovementDirection 
@@ -29,9 +30,6 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeElementBase> SnakeElementClass;
 
-	UPROPERTY()
-	TArray<ASnakeElementBase*> SnakeElements;
-
 	UPROPERTY(EditDefaultsOnly)
 	 float ElementSize;
 
@@ -39,17 +37,10 @@ public:
 	float MovementSpeed;
 
 	UPROPERTY()
-	EMovementDirection LastMoveDirection;
+	TArray<ASnakeElementBase*> SnakeElements;
 
-	//For any Bounus speed
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "How long is any bonus valid")
-	float StepDelay;
 	UPROPERTY()
-	float BufferTime;
-
-	//For method SetLastElementSnale in SnakeElementBase
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "LastElement")
-	UStaticMesh* ChangesMesh;
+	EMovementDirection LastMovementDirection;
 
 protected:
 	// Called when the game starts or when spawned
@@ -61,9 +52,13 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AddSnakeElement(int EmementsNum = 1);
+
 	UFUNCTION(BlueprintCallable)
 	void Move();
+
 	UFUNCTION()
 	void SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other);
-
+	
+	UFUNCTION(BlueprintPure)
+	int32 GetElementsCount() const;
 };

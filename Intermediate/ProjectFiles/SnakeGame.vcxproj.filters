@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\SnakeGame.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{492E81BF-E85B-4B5B-B3C3-FF0DD6D4C59B}</UniqueIdentifier>
+      <UniqueIdentifier>{62B6F0C9-C639-4289-8545-D7AD28B4FE85}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\SnakeGame.Target.cs">
       <Filter>Source</Filter>
@@ -14,7 +14,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{C865B5A8-7524-46DF-8E56-AA214DC2C229}</UniqueIdentifier>
+      <UniqueIdentifier>{9542E89C-9590-4F90-9567-9CB3F91D3347}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -32,7 +32,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\SnakeGame">
-      <UniqueIdentifier>{85E1F88E-4F5E-44C6-9039-E3D9B16AA91C}</UniqueIdentifier>
+      <UniqueIdentifier>{D4B59AC2-69C7-45EA-A9CB-5899363E26F9}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\SnakeGame\Food.cpp">
       <Filter>Source\SnakeGame</Filter>
@@ -79,38 +79,10 @@
     <ClInclude Include="..\..\Source\SnakeGame\SnakeGameGameModeBase.h">
       <Filter>Source\SnakeGame</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="BonusBase.cpp">
+    <ClCompile Include="..\..\Source\SnakeGame\SpawnVolume.cpp">
       <Filter>Source\SnakeGame</Filter>
     </ClCompile>
-    <ClCompile Include="DeathWall.cpp">
-      <Filter>Source\SnakeGame</Filter>
-    </ClCompile>
-    <ClCompile Include="FastBonus.cpp">
-      <Filter>Source\SnakeGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Portal.cpp">
-      <Filter>Source\SnakeGame</Filter>
-    </ClCompile>
-    <ClCompile Include="SlowBonus.cpp">
-      <Filter>Source\SnakeGame</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BonusBase.h">
-      <Filter>Source\SnakeGame</Filter>
-    </ClInclude>
-    <ClInclude Include="DeathWall.h">
-      <Filter>Source\SnakeGame</Filter>
-    </ClInclude>
-    <ClInclude Include="FastBonus.h">
-      <Filter>Source\SnakeGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Portal.h">
-      <Filter>Source\SnakeGame</Filter>
-    </ClInclude>
-    <ClInclude Include="SlowBonus.h">
+    <ClInclude Include="..\..\Source\SnakeGame\SpawnVolume.h">
       <Filter>Source\SnakeGame</Filter>
     </ClInclude>
   </ItemGroup>

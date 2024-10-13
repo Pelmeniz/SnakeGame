@@ -8,8 +8,6 @@
 
 class UCameraComponent;
 class ASnakeBase;
-class AFood;
-class APortal;
 
 UCLASS()
 class SNAKEGAME_API APlayerPawnBase : public APawn
@@ -29,36 +27,7 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeBase> SnakeActorClass;
 
-	//A range for Creating Food/Bonus by Y
-	UPROPERTY(EditAnyWhere)
-	float MinY = -1350.f; float MaxY = 1340.f;
-	//A range for Creating Food/Bonus by X
-	UPROPERTY(EditAnyWhere)
-	float MinX = -1330.f; float MaxX = 1320.f;
-	// Creating Foot by Z
-	UPROPERTY()
-	float SpawnZ = 2.f;
-
-	UPROPERTY()
-	float BufferTimeForEat = 0;
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite)
-	float HowOftenSpawnEat = 1.f;
-
-	UPROPERTY(BlueprintReadWrite)
-	AFood* FoodActor;
-
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AFood> FoodActorClass;
-
-	//For fu RandomSpawnBonus
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Bonus's spawn")
-	TSubclassOf<AActor> FirstActorClass;
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Bonus's spawn")
-	TSubclassOf<AActor> SecondActorClass;
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Bonus's spawn")
-	float HowOftenSpawnBonus = 2.f;
-	UPROPERTY()
-	float BufferTimeForBonus;
+	
 
 protected:
 	// Called when the game starts or when spawned
@@ -73,15 +42,12 @@ public:
 
 	void CreateSnakeActor();
 
+	UFUNCTION(BlueprintPure)
+	ASnakeBase* GetSnakeActor() const;
+
 	UFUNCTION()
 	void HandlerPlayerVerticalInput(float value);
 
 	UFUNCTION()
 	void HandlerPlayerHorizontalInput(float value);
-
-	UFUNCTION()
-	void RandomSpawnEat();
-	UFUNCTION(BlueprintCallable)
-	void RandomSpawnBonus();
-
 };
