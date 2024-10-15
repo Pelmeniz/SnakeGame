@@ -51,6 +51,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 			NewSnakeElem->SetFirstElementType();
 		}
 	}
+
 }
 
 void ASnakeBase::Move() 
@@ -83,6 +84,7 @@ void ASnakeBase::Move()
 		auto PrevElement = SnakeElements[i - 1];
 		FVector PrevLocation = PrevElement->GetActorLocation();
 		CurrentElement->SetActorLocation(PrevLocation);
+		CurrentElement->SetHidden(false);
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);

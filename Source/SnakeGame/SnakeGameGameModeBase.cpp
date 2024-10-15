@@ -2,7 +2,6 @@
 
 
 #include "SnakeGameGameModeBase.h"
-
 #include "PlayerPawnBase.h"
 #include "SpawnVolume.h"
 #include "Blueprint/UserWidget.h"
@@ -65,7 +64,7 @@ void ASnakeGameGameModeBase::GameOver()
 		CurrentPlayerController->bShowMouseCursor = true;
 		SetPause(CurrentPlayerController);
 	}
-	//GameOverDelegate.Broadcast();
+	GameOverDelegate.Broadcast();
 }
 
 void ASnakeGameGameModeBase::HandleNewState(ESnakeGamePlayState NewState)
@@ -77,7 +76,7 @@ void ASnakeGameGameModeBase::HandleNewState(ESnakeGamePlayState NewState)
 	{
 		for (ASpawnVolume* Volume : SpawnVolumeActors)
 		{
-			//Volume->SetSpawningActive(true);
+			Volume->SetSpawningActive(true);
 		}
 	}
 	break;
@@ -86,7 +85,7 @@ void ASnakeGameGameModeBase::HandleNewState(ESnakeGamePlayState NewState)
 	{
 		for (ASpawnVolume* Volume : SpawnVolumeActors)
 		{
-			//Volume->SetSpawningActive(false);
+			Volume->SetSpawningActive(false);
 		}
 	}
 	break;
@@ -95,7 +94,7 @@ void ASnakeGameGameModeBase::HandleNewState(ESnakeGamePlayState NewState)
 	{
 		for (ASpawnVolume* Volume : SpawnVolumeActors)
 		{
-			//Volume->SetSpawningActive(false);
+			Volume->SetSpawningActive(false);
 		}
 		GameOver();
 	}

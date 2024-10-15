@@ -43,7 +43,7 @@ public:
 	void CreateSnakeActor();
 
 	UFUNCTION(BlueprintPure)
-	ASnakeBase* GetSnakeActor() const;
+	ASnakeBase* GetSnakeActor();
 
 	UFUNCTION()
 	void HandlerPlayerVerticalInput(float value);

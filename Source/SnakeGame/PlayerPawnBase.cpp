@@ -49,11 +49,6 @@ void APlayerPawnBase::CreateSnakeActor()
 	SnakeActor = GetWorld()->SpawnActor<ASnakeBase>(SnakeActorClass, FTransform());
 }
 
-ASnakeBase* APlayerPawnBase::GetSnakeActor() const
-{
-	return SnakeActor;
-}
-
 void APlayerPawnBase::HandlerPlayerVerticalInput(float value)
 {
 	if (IsValid(SnakeActor) )
@@ -83,6 +78,11 @@ void APlayerPawnBase::HandlerPlayerHorizontalInput(float value)
 			SnakeActor->LastMovementDirection = EMovementDirection::RIGHT;
 		}
 	}
+}
+
+ASnakeBase* APlayerPawnBase::GetSnakeActor() 
+{
+	return SnakeActor;
 }
 
 
