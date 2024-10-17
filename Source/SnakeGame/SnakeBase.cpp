@@ -40,7 +40,32 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 {
 	for (int i = 0; i < ElementsNum; ++i)
 	{
-		FVector NewLocation(SnakeElements.Num() * ElementSize, 0, 0);
+		FVector NewLocation;
+		if (SnakeElements.Num() > 0)
+		{
+			ASnakeElementBase* LastElement = SnakeElements.Last();
+			FVector LastLocation = LastElement->GetActorLocation();
+			switch (LastMovementDirection)
+			{
+			case EMovementDirection::UP:
+				NewLocation = LastLocation - FVector(ElementSize, 0, 0);
+				break;
+			case EMovementDirection::DOWN:
+				NewLocation = LastLocation + FVector(ElementSize, 0, 0);
+				break;
+			case EMovementDirection::LEFT:
+				NewLocation = LastLocation - FVector(0, ElementSize, 0);
+				break;
+			case EMovementDirection::RIGHT:
+				NewLocation = LastLocation + FVector(0, ElementSize, 0);
+				break;
+			}
+		
+		}
+		else
+		{
+			NewLocation = FVector(0, 0, 0);
+		}
 		FTransform NewTransform(NewLocation);
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
 		NewSnakeElem->SnakeOwner = this;
