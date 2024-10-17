@@ -82,21 +82,27 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 void ASnakeBase::Move() 
 {
 	FVector MovementVector(ForceInitToZero);
-
-	switch (LastMovementDirection)
+	if (Mooving == false)
 	{
-	case EMovementDirection::UP:
-		MovementVector.X += ElementSize;
-		break;
-	case EMovementDirection::DOWN:
-		MovementVector.X -= ElementSize;
-		break;
-	case EMovementDirection::LEFT:
-		MovementVector.Y += ElementSize;
-		break;
-	case EMovementDirection::RIGHT:
-		MovementVector.Y -= ElementSize;
-		break;
+		switch (LastMovementDirection)
+		{
+		case EMovementDirection::UP:
+			MovementVector.X += ElementSize;
+			Mooving = false;
+			break;
+		case EMovementDirection::DOWN:
+			MovementVector.X -= ElementSize;
+			Mooving = false;
+			break;
+		case EMovementDirection::LEFT:
+			MovementVector.Y += ElementSize;
+			Mooving = false;
+			break;
+		case EMovementDirection::RIGHT:
+			MovementVector.Y -= ElementSize;
+			Mooving = false;
+			break;
+		}
 	}
 
 	//AddActorWorldOffset(MovementVector);

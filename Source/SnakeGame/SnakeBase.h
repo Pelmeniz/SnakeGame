@@ -42,6 +42,9 @@ public:
 	UPROPERTY()
 	EMovementDirection LastMovementDirection;
 
+	UPROPERTY()
+	bool Mooving;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
